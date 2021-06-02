@@ -7,12 +7,13 @@ int main(int agrc, char *argv[])
 {
     initClk();
 
-    //TODO The process needs to get the remaining time from somewhere
+    //TODO The process needs to get the remaining time from somewhere.
     //remainingtime = ??;
     while (remainingtime > 0)
     {
         // remainingtime = ??;
     }
+
 
     destroyClk(false);
 

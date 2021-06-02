@@ -10,13 +10,25 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
-
+#include <string.h>
 typedef short bool;
 #define true 1
 #define false 0
 
 #define SHKEY 300
-
+struct process {
+    int id;
+   int arrival;
+   int runtime;
+   int priority;
+   int remTime;
+   struct process *next;
+};
+struct msgbuff
+{
+    long mtype;
+    struct process mtext;
+};
 ///==============================
 //don't mess with this variable//
 int *shmaddr; //
