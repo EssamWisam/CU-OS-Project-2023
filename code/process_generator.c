@@ -12,16 +12,16 @@ int main(int argc, char *argv[])
 {
    // signal(SIGINT, clearResources);
     // TODO Initialization
-    // 1. Read the input files.
+    // 1. Read the input files:
     int lines = 0;
     char* file_name = "processes.txt";
-
     FILE *file_line  = fopen(file_name, "r");
     /*for (char c = getc(file_line); c != EOF; c = getc(file_line))
         if (c == '\n') lines ++;*/
 
     char line[MAX_CHARS];
-    if (file_line == NULL) {   
+    if (file_line == NULL) 
+    {   
               printf("Error! Could not open file\n"); 
               exit(-1); 
     } 
@@ -35,8 +35,11 @@ int main(int argc, char *argv[])
             new -> id = ID;
             new -> arrival = ar;
             new -> runtime = ru;
-            new -> remTime = ru;
             new -> priority = pr;
+            new -> remTime=ru;
+            new ->execTime=0;
+            new ->waiting=-1;
+
             if (k == 0){
                 head = new;
             }
@@ -56,16 +59,15 @@ int main(int argc, char *argv[])
   //  printf("%d \n" , head->next->next->runtime);
     //scanf("%d" , &ru);
 
-
-    // 2. Read the chosen scheduling algorithm and its parameters, if there are any from the argument list.
-    ////////////  ./process_generator.o testcase.txt -sch 5 -q 2,
+    // 2. Read the chosen scheduling algorithm and its parameters, if there are any from the argument list:
+    // e.g. ./process_generator.o processes.txt -sch 1
     int algo , argument= -1;
     algo = atoi(argv[3]);
     printf ("%d \n" , algo);
     if (algo == 5) argument = atoi (argv[5]);
     //printf ("%d" , argument);
 
-    // 3. Initiate and create the scheduler and clock processes.
+    // 3. Initiate and create the scheduler and clock processes (as children of the process generator.)
     int pid ,j = 0;
     for (int i = 0 ; i < 2 ; i ++){
         pid = fork();
@@ -91,7 +93,7 @@ int main(int argc, char *argv[])
     // To get time use this function. 
     int x = getClk();
     printf("Current Time is %d\n", x);
-    // TODO Generation Main Loop
+    // TODO Generation Main Loop (Passing the generated processes from the file to the scheduler.):
     //pid = getpid();
      //printf ("I'm %d \n" , pid);
      int q_key = 22;
@@ -103,7 +105,8 @@ int main(int argc, char *argv[])
    current = head; int send_val;
     struct msgbuff message;
 
-    while (1){
+    while (1)
+    {
         if (current){
             if (current->arrival == getClk()){
                 struct msgbuff message;

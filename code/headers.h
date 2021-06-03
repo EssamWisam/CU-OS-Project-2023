@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h> //if you don't use scanf/printf change this include
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -11,7 +12,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <string.h>
-typedef short bool;
+typedef short boolean;
 #define true 1
 #define false 0
 
@@ -25,8 +26,12 @@ struct process {
    int remTime;
    int process_id;
    int finsihing_time;
+   int execTime;
+   int waiting;
    struct process *next;
 };
+
+
 struct msgbuff
 {
     long mtype;
@@ -67,7 +72,7 @@ void initClk()
  *                      It terminates the whole system and releases resources.
 */
 
-void destroyClk(bool terminateAll)
+void destroyClk(boolean terminateAll)
 {
     shmdt(shmaddr);
     if (terminateAll)

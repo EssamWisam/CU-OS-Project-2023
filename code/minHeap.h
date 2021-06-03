@@ -25,7 +25,7 @@ typedef struct minHeap
     node *curr ;
 } minHeap ;
 
-bool lessThan(struct process a, struct process b, int criterion)
+boolean lessThan(struct process a, struct process b, int criterion)
 {
     switch(criterion)
     {
@@ -95,7 +95,7 @@ void swap(node *n1, node *n2)
 
 
 //Just like we did for insertion, but no holes this time so we need to swap.
-void decreaseKey(minHeap *HP,int i, struct process P)
+void decreaseKey(minHeap *HP,int i, struct process P)                           //decrease the value of some node.
 {
     HP->curr[i].Proc = P;
     while (i != 0 && lessThan(P,HP->curr[parent(i)].Proc, HP->criterion))
@@ -122,7 +122,7 @@ void heapify(minHeap *HP, int i)                            //i is the root of t
 }
 
 
-void deleteNode(minHeap *HP) 
+void deleteNode(minHeap *HP)                                        //deletes the root.
 {
     if(HP->size) 
     {
@@ -151,43 +151,4 @@ void inorderTraversal(minHeap *HP, int i)       //i is the root to start from, t
     {
         inorderTraversal(HP, right(i)) ;
     }
-}
-
-
-int main() 
-{
-    
-   minHeap HP = initMinHeap(1024,3);
-    struct process X;
-    X.runtime=12;
-    X.arrival=15;
-    X.priority=6;
-    X.remTime=18;
-
-    struct process Y;
-    Y.runtime=1;
-    Y.arrival=-15;
-    Y.priority=18;
-    Y.remTime=1;
-
-    struct process Z;
-    Z.runtime=5;
-    Z.arrival=-15;
-    Z.priority=-6;
-    Z.remTime=12;
-
-    struct process Q;
-    Q.priority=-22;
-
-
-
-   insertNode(&HP, X);
-   insertNode(&HP, Y);
-   insertNode(&HP, Z);
-   decreaseKey(&HP,2,Q);
-   //inorderTraversal(&HP,0);
-    
-    printf("%d", (extractMin(&HP).priority)); ;
-
-   return 0;
 }
