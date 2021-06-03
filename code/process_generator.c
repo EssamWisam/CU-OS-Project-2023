@@ -77,13 +77,14 @@ int main(int argc, char *argv[])
     if (pid == 0){
         if (j == 0){
             if (algo == 5)
-                execl(realpath("scheduler.o",NULL),"scheduler.o" ,argv[3] , argv[5] , NULL);
+               execl(realpath("scheduler.o",NULL),"scheduler.o" ,argv[3] , argv[5] , NULL);
             else
                 execl(realpath("scheduler.o",NULL),"scheduler.o",argv[3] , NULL);
         }
         else {
-            execl(realpath("clk.o",NULL),"clk.o",  NULL);
+              execl(realpath("clk.o",NULL),"clk.o",  NULL);
         }
+    
     }
     // 4. Use this function after creating the clock process to initialize clock.
     initClk();

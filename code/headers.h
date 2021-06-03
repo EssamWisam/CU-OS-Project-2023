@@ -15,13 +15,16 @@ typedef short bool;
 #define true 1
 #define false 0
 
+#define key_id_sch_proc 305
 #define SHKEY 300
 struct process {
-    int id;
+   int id;
    int arrival;
    int runtime;
    int priority;
    int remTime;
+   int process_id;
+   int finsihing_time;
    struct process *next;
 };
 struct msgbuff
