@@ -38,7 +38,8 @@ int main(int argc, char *argv[])
             new -> priority = pr;
             new -> remTime=ru;
             new ->execTime=0;
-            new ->waiting=-1;
+            new ->status=-1;
+            new ->startingTime=-1;
 
             if (k == 0){
                 head = new;
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
             else{
                 current ->next = new;
             }
+
             current = new;
             k++;
         }
@@ -61,8 +63,10 @@ int main(int argc, char *argv[])
 
     // 2. Read the chosen scheduling algorithm and its parameters, if there are any from the argument list:
     // e.g. ./process_generator.o processes.txt -sch 1
+
     int algo , argument= -1;
     algo = atoi(argv[3]);
+
     printf ("%d \n" , algo);
     if (algo == 5) argument = atoi (argv[5]);
     //printf ("%d" , argument);
@@ -89,7 +93,9 @@ int main(int argc, char *argv[])
     
     }
     // 4. Use this function after creating the clock process to initialize clock.
+
     initClk();
+
     // To get time use this function. 
     int x = getClk();
     printf("Current Time is %d\n", x);

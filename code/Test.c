@@ -4,7 +4,7 @@
 int main() 
 {
     
-   minHeap HP = initMinHeap(1024,3);
+   minHeap HP = initMinHeap(3);
     struct process X;
     X.runtime=12;
     X.arrival=15;
@@ -23,15 +23,12 @@ int main()
     Z.priority=-6;
     Z.remTime=12;
 
-    struct process Q;
-    Q.priority=30;
-
 
 
    insertNode(&HP, X);
    insertNode(&HP, Y);
    insertNode(&HP, Z);
-   insertNode(&HP,Q);
+   dynamicDelete(&HP,0,Z);
    deleteNode(&HP);
    //inorderTraversal(&HP,0);
     

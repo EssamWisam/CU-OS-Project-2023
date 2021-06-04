@@ -20,14 +20,15 @@ typedef short boolean;
 #define SHKEY 300
 struct process {
    int id;
-   int arrival;
+   int arrival;                     //Whenever it entered the ready queue.
    int runtime;
    int priority;
    int remTime;
    int process_id;
+   int startingTime;                //Time in which its chosen by the scheduler (new.)
    int finsihing_time;
    int execTime;
-   int waiting;
+   int status;                     //' '-1':"Expected" W':"Waiting", 'S':"Started, 'P':"Stopped", 'R':"Resumed", 'F':"Finished"
    struct process *next;
 };
 

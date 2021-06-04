@@ -48,7 +48,7 @@ boolean lessThan(struct process a, struct process b, int criterion)
 }
 
 //The minHeap's constructor.
-minHeap initMinHeap(int size, int crit) {
+minHeap initMinHeap(int crit) {
     minHeap HP ;
     HP.size = 0 ;
     HP.criterion = crit;
@@ -80,6 +80,7 @@ void insertNode(minHeap *HP, struct process P)
     }
     //Inserting the note at the right location (we can't go back any further, the right location was found.)
     HP->curr[i] = insertMe ;
+
 }
 
 
@@ -136,19 +137,28 @@ void deleteNode(minHeap *HP)                                        //deletes th
 }
 
 
-void inorderTraversal(minHeap *HP, int i)       //i is the root to start from, this does inOrder traversal printing runtime.
+int dynamicDelete(minHeap *HP, int i, struct process P)       //i is the root to start from, this does inOrder traversal printing runtime.
 {
     //(Left subtree -> Root -> Right subtree)
     //Check Left.
     if(left(i) < HP->size) 
     {
-        inorderTraversal(HP, left(i)) ;
+        dynamicDelete(HP, left(i),P) ;
     }
-    //Print root
-    printf("%d ", (HP->curr[i].Proc.priority) ) ;
+    //Node to be deleted found:
+    if(HP->curr[i].Proc.id==P.id)
+    {   
+        if(HP->criterion==2)
+    {
+        HP->curr[i].Proc.runtime=-1;
+        decreaseKey(HP,i,HP->curr[i].Proc );           //Now it's the root.
+        deleteNode(HP);
+    }
+      
+    }
     //Check Right.
     if(right(i) < HP->size) 
     {
-        inorderTraversal(HP, right(i)) ;
+        dynamicDelete(HP, right(i),P) ;
     }
 }
