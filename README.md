@@ -11,7 +11,7 @@ GUI was neither necessary nor required. </p>
 <br>🔵 Round Robin
 </i>
 </p>
-<h3 > Implemented Algorithms - Memmory Management </h3>
+<h3 > Implemented Algorithms - Memory Management </h3>
 <p> 
 <i>
 <br>🔴 First Fit
